@@ -1,21 +1,22 @@
-import React from "react";
+
 import React, { useEffect, useState } from "react";
 import QuestionItem from "./QuestionItem";
 function QuestionList({data}) {
   const [questions,setQuestions]=useState([])
 useEffect(()=>{
 
-fetch('http://localhost:4000/questions').then(data=>data.json()).then((res)=>{
+fetch('http://localhost:3000/questions/')
+.then(data=>data.json()).then((res)=>{
 setQuestions(res)
 })
 
 },[])
 const onDelete=(id)=>{
-  fetch(`http://localhost:4000/questions/${id}`,{
+  fetch(`http://localhost:3000/questions/${id}`,{
     method: 'DELETE',
 
   }).then(data=>data.json()).then(()=>
-   { const updated=questions.filter(q=>q.id!=id)
+   { const updated=questions.filter(q=>q.id!==id)
 
   setQuestions(updated)
   }
